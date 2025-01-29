@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import Mulsev.server.controll.ServerManager;
+import Mulsev.server.controller.ServerManager;
 
 //서버 스레드
 public class ServerConnectionThread extends Thread {

@@ -5,8 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import Mulsev.config.Config;
-import Mulsev.server.controll.ServerManager;
-import Mulsev.server.data.ServerData;
+import Mulsev.server.controller.ServerManager;
+import Mulsev.server.data.UsersData;
 
 //익명 채팅 서버
 public class ServerApp {
@@ -17,7 +17,7 @@ public class ServerApp {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Server is running.. PORT: " + port);
             
-            ServerManager serverManager = new ServerManager(new ServerData());
+            ServerManager serverManager = new ServerManager(new UsersData());
 
             while (true) {
                 Socket socket = serverSocket.accept();

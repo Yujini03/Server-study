@@ -1,6 +1,7 @@
 package Mulsev.server.controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import Mulsev.server.Service.UserService;
 import Mulsev.server.data.UsersData;
@@ -27,7 +28,6 @@ public class UserManager implements UserService {
         systemMessage(userKey, "님이 퇴장하였습니다. ----------");
     }
 
-
     //유저 이름(map key) 생성
     @Override
     public String generateUserKey(String threadName) {
@@ -38,16 +38,31 @@ public class UserManager implements UserService {
         return "user" + parts[1];
     }
 
+    @Override
+    public PrintWriter getUser(String userKey) {
+        return usersData.getUser(userKey);
+    }
+
+    @Override
+    public List<PrintWriter> getOtherUsers(String excludedKey) {
+        return usersData.getOtherUsers(excludedKey);
+    }
+
+    @Override
+    public boolean containUser(String userKey) {
+        return usersData.containUser(userKey);
+    }
+
     //전체 시스템 메세지
     private void systemMessage(String userKey, String message) {
-        usersData.getOtherUsers(userKey).forEach(out ->
+        getOtherUsers(userKey).forEach(out ->
             out.println("System: \"" + userKey + "\"" + message)
         );
     }
 
     //특정 유저에게만 시스템 메시지
     protected void systemMessageTo(String userKey, String message) {
-        PrintWriter out = usersData.getUser(userKey);
+        PrintWriter out = getUser(userKey);
         if (out != null) {
             out.println("System: " + message);
         }

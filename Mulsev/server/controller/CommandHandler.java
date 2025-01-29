@@ -1,4 +1,4 @@
-package Mulsev.server.controll;
+package Mulsev.server.controller;
 
 //서버 명령어 처리 클래스
 public class CommandHandler {

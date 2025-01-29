@@ -28,7 +28,7 @@ public class ServerManager extends UserManager implements ChatService {
 
     @Override
     public void sendPublicMessage(String senderKey, String message) {
-        usersData.getOtherUsers(senderKey).forEach(out ->
+        getOtherUsers(senderKey).forEach(out ->
             out.println("[" + senderKey + "]: " + message)
         );
         systemMessageTo(senderKey, "전체 메세지 전송 완료");
@@ -36,7 +36,7 @@ public class ServerManager extends UserManager implements ChatService {
 
     @Override
     public void sendPrivateMessage(String senderKey, String receiverKey, String message) {
-        PrintWriter receiverwriter = usersData.getUser(receiverKey);
+        PrintWriter receiverwriter = getUser(receiverKey);
         if (receiverwriter != null) {
             receiverwriter.println("[(귓속말) " + senderKey + "]: " + message);
             systemMessageTo(senderKey, "귓속말 전송 완료");

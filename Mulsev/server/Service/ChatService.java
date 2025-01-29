@@ -1,5 +1,6 @@
 package Mulsev.server.Service;
 
+//채팅 서버 서비스
 public interface ChatService {
 
     boolean startChat(String userKey, String message); //채팅 서버 시작

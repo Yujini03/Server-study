@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 //서버 데이터 저장
 //유저 이름(users key): 스레드 번호로 정해짐
-public class ServerData {
+public class UsersData {
 
     // private final String imagePath = "C:/Users/youji/OneDrive/workspace/java_va/src/Mulsev/server/data/images/";
 
