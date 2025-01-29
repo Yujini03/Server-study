@@ -31,11 +31,8 @@ public class ServerConnectionThread extends Thread {
             out = new PrintWriter(socket.getOutputStream(), true);
 
             //유저 키 생성
-            userKey = serverManager.generateUserKey(getName());
+            userKey = serverManager.onUserJoin(getName(), out);
             System.out.printf("join %s (ip%s)%n", userKey, socket.getInetAddress());
-
-            //유저 추가
-            serverManager.addUser(userKey, out);
 
             //메세지 처리 루프
             String message;
@@ -53,7 +50,7 @@ public class ServerConnectionThread extends Thread {
 
         } finally {
             closeSocket();    
-            serverManager.removeUser(userKey);   
+            serverManager.onUserLeave(userKey);   
         }
     }
 

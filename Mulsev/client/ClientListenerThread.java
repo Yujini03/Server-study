@@ -19,9 +19,9 @@ public class ClientListenerThread extends Thread {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
 
             String serverMessage;
-            
             while (((serverMessage = in.readLine()) != null) && !isInterrupted()) {
-                System.out.println("\r" + " ".repeat(20) + "\r" + serverMessage);
+                replaceMessage(serverMessage);
+
                 System.out.print("메세지 입력 -> ");
             }
 
@@ -30,6 +30,20 @@ public class ClientListenerThread extends Thread {
             if (!isInterrupted()) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void replaceMessage(String serverMessage) {
+        if (serverMessage.contains("/")) {
+            String message = serverMessage
+                .replace("//n", "__temp__")
+                .replace("/n", "\n")
+                .replace("__temp__", "/n");
+
+                System.out.println("\r" + " ".repeat(20) + "\r" + message);
+
+        } else {
+            System.out.println("\r" + " ".repeat(20) + "\r" + serverMessage);
         }
     }
     

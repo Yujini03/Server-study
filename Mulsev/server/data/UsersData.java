@@ -3,7 +3,8 @@ package Mulsev.server.data;
 import java.io.PrintWriter;
 import java.util.Map;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 //서버 데이터 저장
@@ -38,8 +39,12 @@ public class UsersData {
         users.remove(userKey);
     }
 
-    public boolean containUser(String userKey) {
+    public boolean containsUser(String userKey) {
         return users.containsKey(userKey);
+    }
+
+    public Set<String> userKeys() {
+        return users.keySet();
     }
 
     // public String getImagePath() {
