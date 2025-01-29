@@ -30,13 +30,12 @@ public class CommandHandler {
                 return true;
 
             case "/q": // 종료
-                serverManager.systemMessageTo(userKey, "서버 연결을 종료합니다.");
                 System.out.println(userKey + ": disconnect request");
                 return false;
 
             case "/help": // 도움말
-                String helpText = "<도움말 안내>/n(참고) '//n' 사용 시 줄바꿈. 만약 //n 그대로 사용하고 싶다면 ///n 사용./n/help : 도움말 보기/n/w [이름] [메시지] : 특정 유저에게 귓속말/n/q : " +
-                "서버 연결 종료/n/users : 유저 목록 보기";
+                String helpText = "!! 도움말 안내 !!/n/help : 도움말 보기/n/w [이름] [메시지] : 특정 유저에게 귓속말/n/q : " +
+                "서버 연결 종료/n/users : 유저 목록 보기/n(참고) '//n' 사용 시 줄바꿈. 만약 //n 그대로 사용하고 싶다면 ///n 사용.";
                 serverManager.systemMessageTo(userKey, helpText);
                 return true;
 

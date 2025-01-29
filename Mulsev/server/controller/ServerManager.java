@@ -29,20 +29,22 @@ public class ServerManager implements ChatService {
 
     @Override
     public void sendPublicMessage(String senderKey, String message) {
+        PrintWriter senderwriter = userManager.getUser(senderKey);
         userManager.getOtherUsers(senderKey).forEach(out ->
             out.println("[" + senderKey + "]: " + message)
         );
-        systemMessageTo(senderKey, "전체 메세지 전송 완료");
+        senderwriter.println("[ 나 ]: " + message);
     }
 
     @Override
     public void sendPrivateMessage(String senderKey, String receiverKey, String message) {
         PrintWriter receiverwriter = userManager.getUser(receiverKey);
+        PrintWriter senderwriter = userManager.getUser(senderKey);
         if (receiverwriter != null) {
             receiverwriter.println("[(귓속말) " + senderKey + "]: " + message);
-            systemMessageTo(senderKey, "귓속말 전송 완료");
+            senderwriter.printf("[(귓속말) %s 에게]: %s%n", receiverKey, message);
         } else {
-            systemMessageTo(senderKey, " 님을 찾을 수 없습니다.");
+            systemMessageTo(senderKey, receiverKey + " 님을 찾을 수 없습니다.");
         }
     }
 
@@ -50,16 +52,16 @@ public class ServerManager implements ChatService {
     @Override
     public void systemMessage(String userKey, String message) {
         userManager.getOtherUsers(userKey).forEach(out ->
-            out.printf("System: \"%s\" %s%n", userKey, message)
+            out.printf("< System >/n\"%s\" %s%n", userKey, message)
         );
     }
 
-    //특정 유저에게만 시스템 메시지
+    //특정 유저에게만 시스템 메세지
     @Override
     public void systemMessageTo(String userKey, String message) {
         PrintWriter out = userManager.getUser(userKey);
         if (out != null) {
-            out.println("System: " + message);
+            out.println("< System >/n" + message);
         }
     }
 

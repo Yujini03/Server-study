@@ -3,6 +3,7 @@ package Mulsev.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 import Mulsev.config.Config;
 import Mulsev.server.controller.ServerManager;
@@ -27,10 +28,12 @@ public class ServerApp {
                 ServerConnectionThread serverThread = new ServerConnectionThread(socket, serverManager);
                 serverThread.start();
             }
+            
+        } catch (SocketException e) {
+            System.out.println(e.getMessage());
+
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        
-    }
-    
+        } 
+    }  
 }

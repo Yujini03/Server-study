@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
 
 import Mulsev.server.controller.ServerManager;
 
@@ -44,6 +45,9 @@ public class ServerConnectionThread extends Thread {
                 if (!state) break;
 
             }
+
+        } catch (SocketException e) {
+            System.out.println(userKey + ": disconnect request");
 
         } catch (IOException e) {
             e.printStackTrace();
