@@ -11,12 +11,6 @@ import java.util.stream.Collectors;
 //유저 이름(users key): 스레드 번호로 정해짐
 public class UsersData {
 
-    // private final String imagePath = "C:/Users/youji/OneDrive/workspace/java_va/src/Mulsev/server/data/images/";
-
-    // private final String[] imageNames = {
-    //     "lol.png", "valo.png", "over.png"
-    // };
-
     private static final Map<String, PrintWriter> users = new ConcurrentHashMap<>();
 
     
@@ -46,16 +40,5 @@ public class UsersData {
     public Set<String> userKeys() {
         return users.keySet();
     }
-
-    // public String getImagePath() {
-    //     return imagePath;
-    // }
-
-    // public String getImageName(int index) {
-    //     if (index >= 0 && index < imageNames.length) {
-    //         return imageNames[index];
-    //     }
-    //     return null;
-    // }
     
 }

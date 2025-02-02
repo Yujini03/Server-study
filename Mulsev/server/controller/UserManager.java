@@ -49,6 +49,8 @@ public class UserManager implements UserService {
         String[] parts = threadName.split("-");
         if (parts.length < 2) {
             return "user_" + threadName;
+        } else if (containsUser("user" + parts[1])) {
+            return "user_" + threadName;
         }
         return "user" + parts[1];
     }

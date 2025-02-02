@@ -1,4 +1,4 @@
-package Mulsev.clientSwing;
+package Mulsev.clientSwing2;
 
 import javax.swing.*;
 import java.net.Socket;

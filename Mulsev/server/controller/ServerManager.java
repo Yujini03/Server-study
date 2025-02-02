@@ -83,14 +83,5 @@ public class ServerManager implements ChatService {
         String userKeysString = String.join(", ", userKeys);
         return "유저 목록 (" + userKeysString + ")";
     }
-
-
-    // public String getImagePath() {
-    //     return serverData.getImagePath();
-    // }
-
-    // public String getImageName(int index) {
-    //     return serverData.getImageName(index);
-    // }
     
 }
